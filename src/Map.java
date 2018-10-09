@@ -4,8 +4,8 @@ public class Map {
 
     PApplet parent;
     //int blockColor = parent.color(130); //139, 211, 138
-    int interX;
-    int interY;
+    private int interX;
+    private int interY;
     
     
     Map(PApplet p, int interX, int interY){
