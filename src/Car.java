@@ -24,6 +24,8 @@ public class Car {
     }
     
     
+    
+    
     public void setStartPoint() {
         if (direction.equals("hL")){
             startX = 0;
@@ -52,8 +54,8 @@ public class Car {
     void move() {
         
        
-        parent.stroke(250);
-        parent.fill(135, 205, 247);
+        parent.stroke(240);
+        parent.fill(135, 205, 247, 15);
         
 
         

@@ -3,7 +3,7 @@ import processing.core.PApplet;
 
 public class Traffic extends PApplet {
     
-   private int interX = 1;
+   private int interX = 2;
    private int interY = 2;
    //private Car[] cars = new Car[100];
    private int inters = interX * interY;
@@ -33,22 +33,30 @@ public class Traffic extends PApplet {
    private int bgColor = color(240);
    
     public void settings() {
-        size(900,900);
+        size(300*interX, 300*interY);
 
 //
     }
     
     public void setup() {
         frameRate(60);
-        background(bgColor);
+        background(240);
         map = new Map(this, interX, interY);
+        
+        setQueuesHL();
+        setQueuesHR();
+//        if(!(queuesHR==null)) {
+//            System.out.println(queuesHR[0].getCar(0).direction);
+//        }
+        setQueuesVT();
+        setQueuesVB();
+        
         setLeftLights();
         setRightLights();
         setTopLights();
         setBottomLights();
-        setQueuesHL();
         
-        
+        //setSize(300*interX, 300*interY);
         
     };
   
@@ -58,7 +66,7 @@ public class Traffic extends PApplet {
          map.drawBlock();
          
          if(frameCount % (6 * 60+1) == 0 ){
-            timer = 1; 
+            timer = 0; 
          }
          
          timer = timer+1;
@@ -78,35 +86,93 @@ public class Traffic extends PApplet {
          }
          
          
-         for(CarQueue q : queuesHL) {
+         for(CarQueue q1 : queuesHL) {
              
              
-             for(int j = 0; j<q.getCarList().length; j++){
-                 if(frameCount> j*80) {
+             for(int j = 0; j<q1.getCarList().length; j++){
+                 if(frameCount> j*180) {
                    if(leftLights[0].getStatus().equals("G"))
-                     q.getCar(j).move();
+                     q1.getCar(j).move();
                    else
-                       q.getCar(j).stop();
-//                   else if (l.getStatus().equals("A")|| (c[j].getPosition()-l.getPosition())> -26)
-//                     c[j].move();
-//                   else if(checkFront(j)==true)
-//                     c[j].move();
-//                   else
-//                     c[j].stop();
+                       q1.getCar(j).stop();
+    //                   else if (l.getStatus().equals("A")|| (c[j].getPosition()-l.getPosition())> -26)
+    //                     c[j].move();
+   //                   else if(checkFront(j)==true)
+   //                     c[j].move();
+   //                   else
+   //                     c[j].stop();
                    }
                  
-               }   
+               }  
              
+         }  
+ 
              
-             
-             
-             
-         }
+             for(CarQueue q2 : queuesVT) {
+                 
+                 
+                 for(int j = 0; j<q2.getCarList().length; j++){
+                     if(frameCount> j*180) {
+                       if(topLights[0].getStatus().equals("G"))
+                         q2.getCar(j).move();
+                       else
+                           q2.getCar(j).stop();
+//                       else if (l.getStatus().equals("A")|| (c[j].getPosition()-l.getPosition())> -26)
+//                         c[j].move();
+//                       else if(checkFront(j)==true)
+//                         c[j].move();
+//                       else
+//                         c[j].stop();
+    
+                 }
          
+             } }
+             
+             
+             
+             for(CarQueue q3 : queuesHR) {
+                 
+                 
+                 for(int j = 0; j<q3.getCarList().length; j++){
+                     if(frameCount> j*180) {
+                       if(rightLights[0].getStatus().equals("G"))
+                         q3.getCar(j).move();
+                       else
+                           q3.getCar(j).stop();
+//                       else if (l.getStatus().equals("A")|| (c[j].getPosition()-l.getPosition())> -26)
+//                         c[j].move();
+//                       else if(checkFront(j)==true)
+//                         c[j].move();
+//                       else
+//                         c[j].stop();
+    
+                 }
          
+             } }
+             
+             
+             
+             for(CarQueue q4 : queuesVB) {
+                 
+                 
+                 for(int j = 0; j<q4.getCarList().length; j++){
+                     if(frameCount> j*180) {
+                       if(bottomLights[0].getStatus().equals("G"))
+                         q4.getCar(j).move();
+                       else
+                           q4.getCar(j).stop();
+//                       else if (l.getStatus().equals("A")|| (c[j].getPosition()-l.getPosition())> -26)
+//                         c[j].move();
+//                       else if(checkFront(j)==true)
+//                         c[j].move();
+//                       else
+//                         c[j].stop();
+    
+                 }
          
+             } }
         
-    }
+ }
     
    public void setQueuesHL() {
        queuesHL = new CarQueue[interY];
@@ -117,29 +183,32 @@ public class Traffic extends PApplet {
        
    }
    
-//   public void setQueuesHR() {
-//       queuesHR = new CarQueue[interY];
-//       for(int i =0; i<queuesHR.length; i++) {
-//           queue = new CarQueue(this, "hR", i, interX, interY);
-//       }       
-//       
-//   }
-//   
-//   public void setQueuesVT() {
-//       queuesVT = new CarQueue[interX];
-//       for(int i =0; i<queuesVT.length; i++) {
-//           queue = new CarQueue(this, "vT", i);
-//       }       
-//       
-//   }
-//   
-//   public void setQueuesVB() {
-//       queuesVB = new CarQueue[interX];
-//       for(int i =0; i<queuesVB.length; i++) {
-//           queue = new CarQueue(this, "vB", i);
-//       }       
-//       
-//   }
+   public void setQueuesHR() {
+       queuesHR = new CarQueue[interY];
+       for(int i =0; i<queuesHR.length; i++) {
+           queue = new CarQueue(this, "hR", i, interX, interY);
+           queuesHR[i] = queue;
+       }       
+       
+   }
+   
+   public void setQueuesVT() {
+       queuesVT = new CarQueue[interX];
+       for(int i =0; i<queuesVT.length; i++) {
+           queue = new CarQueue(this, "vT", i, interX, interY);
+           queuesVT[i] = queue;
+       }       
+       
+   }
+   
+   public void setQueuesVB() {
+       queuesVB = new CarQueue[interX];
+       for(int i =0; i<queuesVB.length; i++) {
+           queue = new CarQueue(this, "vB", i, interX, interY);
+           queuesVB[i] = queue;
+       }       
+       
+   }
    
    
     

@@ -85,16 +85,16 @@ public class TrafficLight {
         }
         else {
             if(s>=0 && s<180) {
-                parent.fill(153, 250, 175);; //red
+                parent.fill(250, 61, 66);; //red
                 status = "R";
               
                   }
                   else if(s<300) {
-                parent.fill(250,207,157);; //green
+                parent.fill(153, 250, 175);; //green
                 status = "G";
                   }
                   else {
-                parent.fill(250, 61, 66);; //amber
+                parent.fill(250,207,157);; //amber
                 status = "A";
                   }
         

@@ -21,17 +21,21 @@ public class CarQueue {
         interY = y;
         generateCars();
         
+        //parent.background(240);
+        
     }
     
     
     public void generateCars() {
-        if (direction.equals("hL")) {
+        //if (direction.equals("hL")) {
             for (int i =0; i<cars.length; i++) {
+                System.out.println(direction);
                 car = new Car(parent,count, direction, interX, interY);
                 cars[i] = car;
                 
             }
-        }
+       // }
+       
     }
     
     
